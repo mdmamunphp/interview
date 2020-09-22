@@ -52,7 +52,7 @@ class ProductController extends Controller
 $rand=rand(10,100);
 
         $product =new Product;
-        $product->name=$request->name;
+        $product->name=$request->pname;
         $product->quantity=$request->qty;
         $product->categories_id=$request->category_id;
         $product->price=$request->price;

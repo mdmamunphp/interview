@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Purchase Add</h1>
+                    <h1>Products Add</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Purchase Add</li>
+                        <li class="breadcrumb-item active">Products Add</li>
                     </ol>
                 </div>
             </div>
@@ -42,7 +42,7 @@
 
 
 
-                        <div class="form-group col-sm-6">
+                            <div class="form-group col-sm-6">
                                 <label for="pname">prodcut name</label>
                                 <input type="text" id="pname" name="pname" class="form-control">
                             </div>
@@ -72,7 +72,7 @@
                             </div>
 
                         </div>
-                       
+
                         <div class="modal-footer">
 
                             <input type="submit" class="btn btn-primary" value="submit">
@@ -87,46 +87,47 @@
 
 
             <div class="card-body table-responsive p-0">
-              <table class="table table-hover text-nowrap">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>product name</th>
-                    <th>quantity</th>
-                    <th>price</th>
-                    <th>sku</th>
-                    <th>Action</th>
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>product name</th>
+                            <th>quantity</th>
+                            <th>price</th>
+                            <th>sku</th>
+                            <th>Action</th>
 
-                  </tr>
-                </thead>
-                <tbody>
-                    @isset($product)
-
-
-                    @foreach($product as $value)
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @isset($product)
 
 
-                  <tr>
-                    <td>{{ $value->id }}</td>
-                    <td>{{ $value->name }}</td>
-                    <td>{{ $value->quantity }}</td>
-                    <td>{{ $value->price }}</td>
-                    <td>{{ $value->sku }}</td>
-                    <td>
-                        <a href="">view</a>
-                        <a href="">edit</a>
-                        <a href="">delete</a>
+                        @foreach($product as $value)
 
-                    </td>
 
-                  </tr>
-                  @endforeach
-                  @endisset
-                
-                </tbody>
-              </table>
+                        <tr>
+                            <td>{{ $value->id }}</td>
+                            <td>{{ $value->name }}</td>
+                            <td>{{ $value->quantity }}</td>
+                            <td>{{ $value->price }}</td>
+                            <td>{{ $value->sku }}</td>
+                            <td>
+                                <a href="">view</a>
+                                <a href="">edit</a>
+                                <a href="">delete</a>
+
+                            </td>
+
+                        </tr>
+                        @endforeach
+                        @endisset
+
+                    </tbody>
+                </table>
             </div>
 
+            
             <!-- /.card -->
         </div>
 
@@ -134,25 +135,14 @@
 </div>
 
 </div>
-{{-- <div class="row">
-      <div class="col-12">
-        <a href="#" class="btn btn-secondary">Cancel</a>
-        <input type="submit" value="Create new Porject" class="btn btn-success float-right">
-      </div>
-    </div> --}}
+
 </section>
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-{{-- <script type="text/javascript">
-    $(function() {
-        $('#formRow').click(function() {
-            alert("test");
-        });
-    });
-</script> --}}
+ 
 <script type="text/javascript">
 $(document).ready(function() {
 
@@ -177,7 +167,7 @@ $(document).ready(function() {
 
         $("#rowAdd").append(
             '<div class="form-group col-sm-3"><label for="pro">product Name</label><select class="form-control custom-select" id="pro"><option selected disabled>Select one</option>@isset($product)  @foreach($product as $key => $pro)<option id="{{ $pro->id }}">{{ $pro->name }}</option>@endforeach   @endisset     </select></div><div class="form-group col-sm-3"><label for="product">product price</label><input type="text" id="product" class="form-control"></div>   <div class="form-group col-sm-3"><label for="quant">quantity</label><input type="text" id="quant" class="form-control"></div><div class="form-group col-sm-3"><button type="button"  value="add row" id="formRow"style="margin-top: 15%" class="btn btn-success">add </button></div>'
-            )
+        )
 
 
     });

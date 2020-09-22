@@ -27,3 +27,6 @@ Route::resource("product", "ProductController");
 Route::resource("order", "OrderController");
 
 Route::post("order/orderadd", "OrderController@orderadd");
+Route::post("order/store", "OrderController@store");
+
+Route::post("order/customer", "OrderController@customer");

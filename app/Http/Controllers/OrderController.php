@@ -42,11 +42,22 @@ class OrderController extends Controller
     {
         //
     }
+    public function customer($id)
+    {
+        $user = Product::find($id);
+
+        return  response()->json($user);
+        
+    }
     public function store(Request $request)
     {
 
 
-
+            session()->forget('cart');
+      
+        session()->flash('success','Product removed successfully');
+      //  return response()->json($purchase);
+        return redirect()->back();
 
     
     }
@@ -66,6 +77,7 @@ class OrderController extends Controller
                     $cart = [
                         $request->product_id => [
                             "name" => $product->name,
+                            "customer_id"=>$request->customer_id,
                             "product_id" => $request->product_id,
                             "price" => $request->purchase_price,
                             "quantity" => $request->quantity,
@@ -88,6 +100,7 @@ class OrderController extends Controller
      }
     $cart[$request->product_id] = [
         "name" => $product->name,
+        "customer_id"=>$request->customer_id,
         "product_id" => $request->product_id,
         "price" => $request->purchase_price,
         "quantity" => $request->quantity
