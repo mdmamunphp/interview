@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>customer Tables</h1>
+                    <h1>category Tables</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">customer</li>
+                        <li class="breadcrumb-item active">category</li>
                     </ol>
                 </div>
             </div>
@@ -66,9 +66,10 @@
                                         <td>{{ $value->id }}</td>
                                         <td>{{ $value->name }}</td>
                                         <td>
-                                            <a href="">view</a>
-                                            <a href="">edit</a>
-                                            <a href="">delete</a>
+                                        
+                                             <button type="submit" class="btn btn-success">view</button>
+                                             <!-- <input type="button" class="cate_id" value="{{ $value->id }}"> -->
+                                             <button type="submit"  class="b" data-id="{{ $value->id }}"class="btn btn-danger">delete</button>
 
                                         </td>
 
@@ -109,6 +110,115 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+// $(document).ready(function(){
+//   $(".field").change(function(){
+//     alert("ok")
+//   });
+// });
+
+$(document).ready(function(){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+  $(".b").click(function(){
+    var id=$(this).data("id");
+   // alert("The paragraph was clicked. -"+id);
+
+    $.ajax({
+            url: '{{ url('category/get_details') }}',
+            method: 'post',
+            data: {
+                category_id: id,
+               
+            },
+            dataType: "json",
+            success: function(data) {
+
+                console.log(data);
+                var html="";
+               // alert("Text: " + $("Name:"+data.p_name+" Email:"+data.cate_name).text());
+               for(var i=0;i< data.length; i++){
+                    html +="product name: " +data[i].p_name;
+                   
+                   console.log(data[i].p_name);
+
+               }
+               swal({
+                        title: "Are you sure?",
+                        text: html,
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                        })
+                        .then((willDelete) => {
+
+                        if (willDelete) {
+                            $.ajax({
+                                    url: '{{ url('category/category_detelete') }}',
+                                    method: 'post',
+                                    data: { category_id:id,                         
+                                    },
+                                    dataType: "json",
+                                    success: function(data) {
+
+                                        console.log(data);
+
+                                     
+                                        //  alert(data.success);
+
+
+                                    },
+                                    error: function(error) {
+                                        console.log(error); 
+
+                                    }
+                                })
+                          //  console.log("ok");
+
+                            swal("Poof! Your imaginary file has been deleted!", {
+                            icon: "success",
+
+                            
+
+                            });
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                        });
+
+                                    //   alert(html);
+// if(confirm(" Category_name:"+data[0].cate_name+"product_name:"+data[0].p_name)){
+
+
+// }
+//              //   $("#customer_details").html("<td> Id:"+data.id+"</td><td> Name:"+data.name+"</td><td> Email:"+data.email+"</td>");
+                //  alert(data.success);
+
+
+            },
+            error: function(error) {
+                console.log(error); 
+
+            }
+        })
+
+
+
+  });
+});
+</script>
+
+
+
+
 
 
 @endsection

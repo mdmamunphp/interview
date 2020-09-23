@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
-use App\Customer;
+use App\Categorie;
 
 //images upload
 
@@ -29,22 +29,34 @@ class CategoryController extends Controller
         return view('category',compact('result'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function get_details(Request $request)
+    {
+       $id=$request->category_id;
+       $result=DB::select("select c.name cate_name, p.name p_name FROM categories c inner join products p on c.id=p.categories_id where c.id='$id';");
+      //  $order = Categorie::find($data);
+            if(isset($order)){
+             //   return response(view('order', compact('order'))->render());
+            }
+
+
+    //  return  response()->json($user);
+      return  response()->json($result);
+      //  
+    }
+
+    public function category_detelete(Request $request)
+    {
+        $id=$request->category_id;
+        $result=DB::delete("delete from products where categories_id='$id'");
+        $res=DB::delete("delete from categories where id='$id'");
+        return  response()->json("success");
+    }
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+  
     public function store(Request $request)
     {
         //
@@ -52,46 +64,25 @@ class CategoryController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
         //

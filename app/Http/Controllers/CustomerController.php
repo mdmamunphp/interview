@@ -47,8 +47,17 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+        $name=$request->name;
+     
+        //$len=3;
+        $id=rand(10,100);
+        $fname=$id."-".strtoupper(substr($name,0,3));
+    
+
+
         $customer =new Customer;
-        $customer->name=$request->name;
+        $customer->customer_id= $fname;
+        $customer->name= $request->name;;
         $customer->email=$request->email;
         $customer->mobile=$request->mobile;
        

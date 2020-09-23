@@ -47,8 +47,8 @@
               <table class="table table-hover text-nowrap">
                 <thead>
                   <tr>
-                    <th>ID</th>
-                    <th>User</th>
+                    <th>Customer ID</th>
+                    <th>Customer Name</th>
                     <th>Action</th>
 
                   </tr>
@@ -61,7 +61,7 @@
 
 
                   <tr>
-                    <td>{{ $value->id }}</td>
+                    <td>{{ $value->customer_id }}</td>
                     <td>{{ $value->name }}</td>
                     <td>
                         <a href="">view</a>

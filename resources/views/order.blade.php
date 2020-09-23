@@ -52,7 +52,7 @@ $(document).ready(function(){
                         <div class="card-body row" id="rowAdd">
                             <div class="form-group col-sm-6">
                                 
-                                <label>customer Country:</label>
+                                <label>customer select:</label>
                                         <select class="form-control" id="country">
                                         @isset($customer)
                                         @foreach($customer as $key => $value)
@@ -61,8 +61,16 @@ $(document).ready(function(){
 
                                         @endisset
                                         </select>
-                                
-                               
+
+                                       
+                                       <div>
+                                            <table class="table" id="customer_details">
+                                                <tr>
+                                                
+                                                </tr>
+                                            </table>
+                                       </div>
+                                      
 
                               
 
@@ -390,6 +398,7 @@ alert("ok");
 })
 </script>
 <script>
+
 $(document).ready(function(){
     $.ajaxSetup({
         headers: {
@@ -400,15 +409,36 @@ $(document).ready(function(){
 
   $("#country").on("change", function(){
     var customer_id = $(this).children("option:selected").val();
-       alert("You have selected the country - " + customer_id);
+      //alert("You have selected the country - " + customer_id);
+
+   console.log(customer_id)
+
+   $.ajax({
+            url: '{{ url('order/customer') }}',
+            method: 'post',
+            data: {
+                customer_id: customer_id,
+               
+            },
+            dataType: "json",
+            success: function(data) {
+
+                console.log(data);
+
+                $("#customer_details").html("<td> Id:"+data.id+"</td><td> Name:"+data.name+"</td><td> Email:"+data.email+"</td>");
+                //  alert(data.success);
 
 
-     
+            },
+            error: function(error) {
+                console.log(error); 
 
-
+            }
+        })
 
 
   });
+  
 });
 </script>
 

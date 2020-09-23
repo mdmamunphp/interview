@@ -15,7 +15,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Product;
-
+use App\Customer;
 use App\Categorie;
 
 use Illuminate\Http\UploadedFile;
@@ -42,12 +42,18 @@ class OrderController extends Controller
     {
         //
     }
-    public function customer($id)
+    public function customer(Request $request)
     {
-        $user = Product::find($id);
+       $data=$request->customer_id;
+        $order = Customer::find($data);
+            if(isset($order)){
+             //   return response(view('order', compact('order'))->render());
+            }
 
-        return  response()->json($user);
-        
+
+    //  return  response()->json($user);
+      return  response(view('order', compact('order')))->json($order);
+      //  
     }
     public function store(Request $request)
     {
