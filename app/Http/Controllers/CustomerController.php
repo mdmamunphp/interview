@@ -61,8 +61,38 @@ class CustomerController extends Controller
         $customer->email=$request->email;
         $customer->mobile=$request->mobile;
        
-        $customer->save();
-        return redirect()->back();
+      //  $customer->save();
+    //    return redirect()->back();
+
+
+        $image=$request->file('images');
+      
+        // return response()->json($data);
+        if($image){
+  
+              $image_name=hexdec(uniqid());
+              $ext =strtolower($image->getClientOriginalExtension());
+              $image_full_name=$image_name.'.'.$ext;
+              $upload_path='public/admin/';
+              $image_url=$upload_path.$image_full_name;
+              $success = $image->move($upload_path,$image_full_name);
+              $customer->images=$image_url;
+              $customer->save();
+              return redirect()->back();
+
+  
+  
+        }else{
+          $customer->save();
+          return redirect()->back();
+
+        }
+  
+
+
+
+
+
 
     }
 

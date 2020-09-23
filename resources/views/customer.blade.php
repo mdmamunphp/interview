@@ -86,7 +86,7 @@
       <h2>customer add<h2>
       <div>
    
-        <form action="{{ route('customer.store') }}" method="post">
+        <form action="{{ route('customer.store') }}" method="post" enctype="multipart/form-data">
             @csrf
           <div class="form-group">
             <label for="name-name" class="col-form-label">name:</label>
@@ -102,7 +102,7 @@
           </div>
           <div class="form-group">
             <label for="images" class="col-form-label">images add:</label>
-            <input type="file" name="image"class="form-control" id="images">
+            <input type="file" name="images"class="form-control" id="images">
           </div>
           <div class="modal-footer">
          

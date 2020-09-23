@@ -51,8 +51,8 @@ class OrderController extends Controller
             }
 
 
-    //  return  response()->json($user);
-      return  response(view('order', compact('order')))->json($order);
+      return  response()->json($order);
+   //   return  response(view('order', compact('order')))->json($order);
       //  
     }
     public function store(Request $request)

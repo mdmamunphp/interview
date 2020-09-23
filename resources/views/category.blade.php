@@ -69,7 +69,7 @@
                                         
                                              <button type="submit" class="btn btn-success">view</button>
                                              <!-- <input type="button" class="cate_id" value="{{ $value->id }}"> -->
-                                             <button type="submit"  class="b" data-id="{{ $value->id }}"class="btn btn-danger">delete</button>
+                                             <button type="submit"  class="b" data-id="{{ $value->id }}" class="btn btn-danger">delete</button>
 
                                         </td>
 
@@ -146,7 +146,7 @@ $(document).ready(function(){
                 var html="";
                // alert("Text: " + $("Name:"+data.p_name+" Email:"+data.cate_name).text());
                for(var i=0;i< data.length; i++){
-                    html +="product name: " +data[i].p_name;
+                    html +="product name : " + data[i].p_name;
                    
                    console.log(data[i].p_name);
 

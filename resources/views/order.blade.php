@@ -53,7 +53,7 @@ $(document).ready(function(){
                             <div class="form-group col-sm-6">
                                 
                                 <label>customer select:</label>
-                                        <select class="form-control" id="country">
+                                        <select class="form-control" name="customer_id"id="cus">
                                         @isset($customer)
                                         @foreach($customer as $key => $value)
                                         <option   value="{{ $value->id }}">{{ $value->name }}</option>
@@ -407,9 +407,9 @@ $(document).ready(function(){
     });
 
 
-  $("#country").on("change", function(){
+  $("#cus").on("change", function(){
     var customer_id = $(this).children("option:selected").val();
-      //alert("You have selected the country - " + customer_id);
+  //    alert("You have selected the country - " + customer_id);
 
    console.log(customer_id)
 
